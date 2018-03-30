@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Click'o'blog</title>
+
+    <!--link href="Styles/bootstrap.min.css" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="Styles/index.css"-->
+    <!--link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"-->
+
+</head>
+<body ng-app ="app">
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Click'o'Blog</a>
+    </div>
+
+    <% if (isAuthenticated){%>
+
+    <ul class="nav navbar-nav">
+
+        <li><a href ="/">Home</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role='button' aria-haspopup="true" aria-expanded="false" >
+                Portfolio<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/Outdoor">Outdoor</a></li>
+
+                <li><a href="/Portrait">Portrait</a></li>
+
+                <li><a href="/Long Exposure">Long Exposure</a></li>
+            </ul>
+        </li>
+        <li><a href ="/profile">Profile</a></li>
+        <li><a href ="/About">About</a></li>
+        <li><a href ="/Contact Us">Contact Us</a></li>
+    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/About"><span class="glyphicon glyphicon-user"></span>  <%=user.username%></a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+
+    <%}else{ %>
+    <ul class="nav navbar-nav">
+
+        <li><a href ="/">Home</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role='button' aria-haspopup="true" aria-expanded="false" >
+                Portfolio<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/Outdoor">Outdoor</a></li>
+
+                <li><a href="/Portrait">Portrait</a></li>
+
+                <li><a href="/Long Exposure">Long Exposure</a></li>
+            </ul>
+        </li>
+        <li><a href ="/About">About</a></li>
+        <li><a href ="/Contact Us">Contact Us</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/signUp"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+
+<%}%>
+</nav>
+
+<!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script-->
+<script src="../scripts/angular.min.js"></script>
+<!--script src="/public/scripts/angular-ui-router.min.js"></script-->
+<script src="../app.js"></script>
+
+
+
+</body>
+</html>

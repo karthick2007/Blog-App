@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head ng-app="app">
+    <meta charset="UTF-8">
+    <title>Blog home</title>
+
+    <style>
+        div.gallery {
+            border: 2px solid #ccc;
+        }
+
+        div.gallery:hover {
+            border: 2px solid black;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+            image-rendering: auto;
+            max-width: 100%;
+        }
+
+        * {
+            box-sizing: content-box;
+        }
+
+        .responsive {
+            padding: 0 4px;
+            float: left;
+            width: 50%;
+        }
+        @media only screen and (max-width: 400px) {
+            .responsive {
+                width: 49.99999%;
+                margin: 6px 0;
+            }
+        }
+
+        @media only screen and (max-width: 300px) {
+            .responsive {
+                width: 100%;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<% include partials/header %>
+
+<%if(files){%>
+<%files.forEach(function(file){%>
+<div class="responsive">
+    <div class = 'gallery'>
+        <a target="_blank" href="image/<%=file.filename%>">
+            <% if(file.isImage){%>
+            <img src="image/<%= file.filename %>" alt="">
+            <%}else{%>
+            <%=file.filename%>
+            <%}%>
+        </a>
+    </div>
+    <div class="user_data"><%=file.metadata.username%></div>
+</div>
+<%})%>
+<%} else {%>
+<p>No files to show</p>
+<% } %>
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src ='https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyloadxt/1.1.0/jqlight.lazyloadxt.min.js'></script>
+
+</body>
+</html>

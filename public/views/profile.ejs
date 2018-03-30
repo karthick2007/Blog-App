@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog home</title>
+
+</head>
+<body>
+<% include partials/header %>
+
+<div class = "container">
+
+    <div class ="uploadForm">
+        <form action="/upload" method = "POST" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+                <input type ='file' name = 'file' id= 'file'
+                       class = 'custom-file-input'>
+            </div>
+            <input type ='submit' value ='Submit' class="btn btn-primary ">
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
+

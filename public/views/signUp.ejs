@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+    .form-horizontal {
+        margin-left: 50px;
+    }
+        .alert{
+            width:25%;
+        }
+</style>
+</head>
+<body>
+
+<% include partials/header %>
+
+<form ng-app = 'app' class="form-horizontal" action = '/signUp' method = 'post' ng-controller="RegisterCtrl" name="registerForm" novalidate>
+    <fieldset>
+        <div id="legend">
+            <legend class="">Register</legend>
+        </div>
+        <% if(message.length>0){%>
+        <div style="color:Red ;padding-left: 50px" class= "alert alert-danger" role = "alert"><%= message %></div>
+        <%}%>
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label"  for="username">Username</label>
+            <div class="controls">
+                <input type="text" id="username" name="username" placeholder="" class="input-xlarge" ng-model="User.username" ng-change="userValidate(User.username)" required ng-minlength="4">
+                <span style="color:Red"class="help-block" ng-show="userPresent">Username already taken</span>
+                <span style="color:Red" ng-show="registerForm.username.$invalid && !registerForm.username.$pristine" class="help-block">Enter a valid Username.</span>
+                <p class="help-block">Username should be atleast 4 characters</p>
+            </div>
+
+        </div>
+
+        <div class="control-group">
+            <!-- E-mail -->
+
+            <label class="control-label" for="email">E-mail</label>
+
+            <div class="controls">
+                <input type="email" id="email" name="email" placeholder="" class="input-xlarge" ng-model="User.email" ng-change="emailValidate(User.email)"required>
+                <span  style="color:Red" ng-show="emailPresent" class="help-block">Email already taken.</span>
+                <span  style="color:Red" ng-show="registerForm.email.$invalid && !registerForm.email.$pristine && !registerForm.email.length" class="help-block">Enter a valid email.</span>
+                <p class="help-block">Please provide your E-mail</p>
+            </div>
+
+        </div>
+
+        <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model ="User.password" required ng-pattern="/^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,}$/">
+                <span  style="color:Red" ng-show="registerForm.password.$error.pattern && !registerForm.password.$pristine" class="help-block">Enter a valid password.</span>
+                <span  style="color:Red" ng-show="enterPassword" class="help-block">Please enter Password first.</span>
+                <p class="help-block">Password should be at least 6 characters </br>with minimum one number and one alphabhet</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Password -->
+            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+            <div class="controls">
+                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" ng-model="User.confirmPassword"
+                       ng-keyup="validatePassword(User.password,User.confirmPassword)" ng-disabled="registerForm.password.$invalid"required >
+                <span  style="color:Red" ng-show="validPassword" class="help-block">Password doesn't match.</span>
+                    <p class="help-block">Please confirm password</p>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+                <button class="btn btn-success"  ng-disabled="registerForm.$invalid">Register</button>
+                <p style="color:Green"class ="status" ng-model="status"></p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+        <!--script src="../scripts/angular.min.js"></script-->
+        <!--script src ="https://code.angularjs.org/1.2.32/angular.min.js.map"></script-->
+        <!--script src="https://code.angularjs.org/1.2.32/angular.min.js"></script>
+
+        <script src="app.js"></script-->
+
+        <!--Controllers-->
+        <script src="../controllers/signup.controller.js"></script>
+
+</body>
